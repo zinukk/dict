@@ -30,7 +30,7 @@ const updic = () =>{
     const examData = examRef.current.value
     const transData = transRef.current.value
 
-    dispatch(updateDicFB(propsdata.id, {word : wordData, sound: soundData, mean:meanData, exam:examData, trans:transData}))
+    dispatch(updateDicFB(propsdata.id, {word : wordData, sound: soundData, mean:meanData, exam:examData, trans:transData, isCompleted:false}))
 }
 
 const history = useHistory();

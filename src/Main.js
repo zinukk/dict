@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom'
 import { connect } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { completeDict, copyDict, deleteDict, deleteDictFB } from './redux/modules/dict';
+import { changeDicFB, completeDict, copyDict, deleteDict, deleteDictFB } from './redux/modules/dict';
 
 
 
@@ -21,8 +21,10 @@ const Main = (props) => {
         
     }
 
+
+
     const data = useSelector((state)=>state.dict.list)
-    console.log(data);
+    
 
     return (
         <>
@@ -34,7 +36,7 @@ const Main = (props) => {
         <button className='addbt' onClick={()=>{history.push(`/Detail`)}}>+</button>
         <div className='container'>
             {data.map((data, idx) => {
-                return  (<div key={idx} >
+                return  (<div key={idx} style={{background: data.isCompleted ? '#fff': 'rgb(240, 150, 444)'}}>
                             <h1>{data.word} </h1>
                             <p>[{data.sound}]</p>
                             <p>{data.mean}</p>
@@ -52,6 +54,10 @@ const Main = (props) => {
                                 // dispatch(copyDict({id: data.id, data}))
 
                             }}>수정</button>
+                            <button className='combt'onClick={()=>{
+                                
+                                dispatch(changeDicFB(data.id, data.isCompleted))
+                            }}>완료</button>
                         </div>)
             })}
         </div>

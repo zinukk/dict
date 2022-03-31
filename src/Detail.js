@@ -24,9 +24,6 @@ const addDictData = () =>{
     const meanData = meanRef.current.value
     const examData = examRef.current.value
     const transData = transRef.current.value
-    
-    
-    // dispatch(createDict(dictData)); 
 
     dispatch(addDictFB({word : wordData, sound : soundData, mean : meanData, exam : examData, trans : transData, isCompleted : false}))
     

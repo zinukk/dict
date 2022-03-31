@@ -9,6 +9,7 @@ const CREATE = 'dict/CREATE';
 const UPDATE = 'dict/UPDATE';
 const DELETE = 'dict/DELETE';
 const COMPLETE = 'dict/COMPLETE'
+const CHANGE = 'dict/CHANGE'
 
 
 const initialState = {list: []};
@@ -50,6 +51,18 @@ switch (action.type) {
 
         return {list : newData}
     }
+    case 'dict/CHANGE':{
+        console.log(action.selectedId, action.changedData,state.list);
+        const newData = state.list.map((cur,idx) => {
+            if(cur.id == action.selectedId){
+                return {id: action.selectedId, ...cur, ...action.changedData }
+            }else{
+                return cur
+            }
+        })
+
+        return {list : newData}
+    }
 default: return state;
 }
 }
@@ -77,6 +90,10 @@ return { type: DELETE, dict_index };
 
 export function updateDic(updatedId, updatedData){
     return {type:UPDATE, updatedId, updatedData}
+}
+
+export function changeDic(selectedId, changedData) {
+    return{type:CHANGE, selectedId, changedData}
 }
 
 //midelwares
@@ -113,10 +130,6 @@ export const addDictFB = (dicts) => {
 
 export const deleteDictFB = (dict_id) =>{
     return async function (dispatch, getState) {
-        // if(!dict_id){
-        //     window.alert('아이디가 없습니다')
-        //     return;
-        // }
 
         const docRef = doc(db, 'sparta-week2', dict_id);
         await deleteDoc(docRef);
@@ -142,3 +155,16 @@ export const updateDicFB = (updatedId, updatedData) =>{
     }
 }
 
+export const changeDicFB = (selectedId, iscomData) =>{
+    return async function (dispatch) {
+        if(iscomData == false){
+        const docRef = doc(db,'sparta-week2', selectedId)
+        await updateDoc(docRef, {isCompleted : true})
+        dispatch(changeDic(selectedId, {isCompleted : true}))
+    }else{
+        const docRef = doc(db,'sparta-week2', selectedId)
+        await updateDoc(docRef, {isCompleted : false})
+        dispatch(changeDic(selectedId, {isCompleted : false}))
+    }
+  }   
+}
