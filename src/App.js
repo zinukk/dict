@@ -6,6 +6,7 @@ import {db} from './firebase'
 import { collection, getDoc, getDocs, addDoc, updateDoc, doc, deleteDoc} from 'firebase/firestore'
 import { useDispatch, useSelector } from 'react-redux';
 import {createDict, loadDictFB} from './redux/modules/dict'
+import Update from './Update';
 
 
 function App() {
@@ -37,12 +38,14 @@ function App() {
       // query.forEach((doc)=>{
       //   console.log(doc.id, doc.data());
       // });
+      
   }, []);
   
   return (
     <div className="App">
       <Route path='/' exact component={Main} />
       <Route path='/Detail' component={Detail} />
+      <Route path='/Update' component={Update}/>
     </div>
   );
 }

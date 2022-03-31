@@ -43,6 +43,7 @@ body {
   border-radius: 15px;
   padding: 0 20px;
   background-color: white;
+  position: relative;
 }
 
 .addbt {
@@ -88,4 +89,22 @@ body {
   font-weight: bold;
   border-radius: 10px;
   background-color: rgb(108, 90, 227);
+}
+.deletebt {
+  position: absolute;
+  right: 10px;
+  top: 18px;
+  background-color: rgb(108, 90, 227);
+  border-radius: 3px;
+  color: white;
+  border: 1px solid rgb(108, 90, 227);
+}
+.fixbt {
+  position: absolute;
+  right: 50px;
+  top: 18px;
+  background-color: rgb(108, 90, 227);
+  border-radius: 3px;
+  color: white;
+  border: 1px solid rgb(108, 90, 227);
 }

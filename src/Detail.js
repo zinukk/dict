@@ -18,18 +18,6 @@ const examRef= useRef(null)
 const transRef= useRef(null)
 
 
-const sendData= (props) =>{
-    const wordData = wordRef.current.value
-    const soundData = soundRef.current.value
-    const meanData = meanRef.current.value
-    const examData = examRef.current.value
-    const transData = transRef.current.value
-
-    const dictData = {word : wordData, sound : soundData, mean : meanData, exam : examData, trans : transData, isCompleted : false}
-
-    return dictData;  
-}
-
 const addDictData = () =>{
     const wordData = wordRef.current.value
     const soundData = soundRef.current.value
