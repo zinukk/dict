@@ -30,7 +30,7 @@ const updic = () =>{
     const examData = examRef.current.value
     const transData = transRef.current.value
 
-    dispatch(updateDicFB(propsdata.id, ))
+    dispatch(updateDicFB(propsdata.id, {word : wordData, sound: soundData, mean:meanData, exam:examData, trans:transData}))
 }
 
 const history = useHistory();
@@ -45,7 +45,7 @@ const history = useHistory();
         <>
             <nav className='logo_box'>
                 <h1 className='title'>
-                    중국어 단어장
+                    영어 단어장
                 </h1>
             </nav>
             <div className='formbox'>

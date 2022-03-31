@@ -38,16 +38,18 @@ switch (action.type) {
         
         return {list : newData}
     }
-    // case 'dict/COPY':{
-    //     const newData = state.list.map((cur,idx)=>{
-    //          if(cur.id == action.sdata.id){
-    //              return action.sdata
-    //          }else{
-    //              return state
-    //          }
-    //          })
-    //     return {list : newData}
-    // }
+    case 'dict/UPDATE':{
+        console.log(state.list);
+        const newData = state.list.map((cur,idx) =>{
+            if(cur.id === action.updatedId){
+                return {id:action.updatedId, ...cur, ...action.updatedData}
+            }else{
+                return cur
+            }
+        })
+
+        return {list : newData}
+    }
 default: return state;
 }
 }
@@ -73,24 +75,9 @@ export function deleteDict(dict_index) {
 return { type: DELETE, dict_index };
     }
 
-export function updateDic(asd){
-    return {type:UPDATE, asd}
+export function updateDic(updatedId, updatedData){
+    return {type:UPDATE, updatedId, updatedData}
 }
-
-
-// export function createDict(widget) {
-// return { type: UPDATE, widget };
-// }
-
-// export function createDict(widget) {
-// return { type: REMOVE, widget };
-// }
-
-// side effects, only as applicable
-// e.g. thunks, epics, etc
-// export function getWidget () {
-// return dispatch => get('/widget').then(widget => dispatch(updateWidget(widget)))
-// }
 
 //midelwares
 export const loadDictFB = () => {
@@ -145,13 +132,13 @@ export const deleteDictFB = (dict_id) =>{
     }
 }
 
-export const updateDicFB = (updatedData) =>{
+export const updateDicFB = (updatedId, updatedData) =>{
     console.log(updatedData);
     return async function (dispatch) {
 
-        const docRef = doc(db,'sparta-week2', updatedData)
-        
-        await updateDoc(docRef)
+        const docRef = doc(db,'sparta-week2', updatedId)
+        await updateDoc(docRef, updatedData)
+        dispatch(updateDic(updatedId, updatedData))
     }
 }
 
