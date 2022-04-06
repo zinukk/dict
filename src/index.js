@@ -9,47 +9,6 @@ import {Provider} from 'react-redux'
 import store from "./redux/configStore"
 
 
-// let alert = 'true'
-
-// function reducer2(state = alert, action){
-//   if(action.type === '닫아'){
-//     state = false
-
-//     return state
-//   }else{
-//     return state
-//   }
-// }
-
-
-
-
-
-// let 초기값 = [
-//   {name : '신발수량', quan : 1 }
-// ]
-
-// function reducer( state = 초기값, 액션) {
-
-//   if(액션.type === '수량증가'){
-//     let newState = [...state];
-//     newState[0].quan++
-
-//     return newState
-//   }else if(액션.type === '수량감소'){
-//     let newState = [...state];
-//     newState[0].quan--
-
-//     return newState
-//   }else{
-//     return state
-//   }
-
-// }
-
-// let store = createStore(combineReducers({reducer,reducer2}));
-
-
 ReactDOM.render(
   <Provider store={store}>
   <BrowserRouter>
